@@ -87,8 +87,7 @@ export function chatCommand(program) {
                         maxTokens: 1000,
                     });
 
-                    spinner.clear();
-
+                    spinner.success({ text: chalk.green("Answer generated!") });
                     console.log("\n" + chalk.bold.cyan("  DevMind →"));
                     console.log(chalk.dim("  " + "─".repeat(46)));
 
