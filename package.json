@@ -1,0 +1,49 @@
+{
+  "name": "devmind-ai",
+  "version": "1.0.0",
+  "description": "🧠 AI-powered CLI assistant that generates project ideas, scaffolds structures, writes READMEs, suggests tech stacks, explains errors, and builds full starter projects — for any domain.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "devmind": "./bin/devmind.js"
+  },
+  "scripts": {
+    "start": "node bin/devmind.js",
+    "dev": "node bin/devmind.js"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "project-generator",
+    "scaffold",
+    "developer-tools",
+    "openai",
+    "readme-generator",
+    "cybersecurity",
+    "devtools",
+    "npm-tool"
+  ],
+  "author": "Dhinesh (update this before publishing)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.2.0",
+    "gradient-string": "^2.0.2",
+    "inquirer": "^9.2.23",
+    "nanospinner": "^1.1.0",
+    "ora": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/devmind-ai.git"
+  },
+  "homepage": "https://github.com/yourusername/devmind-ai#readme"
+}
