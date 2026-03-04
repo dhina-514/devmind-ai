@@ -41,14 +41,25 @@ export function chatCommand(program) {
             let turn = 0;
 
             while (true) {
-                const { input } = await inquirer.prompt([
-                    {
-                        type: "input",
-                        name: "input",
-                        message: chalk.cyan("You →"),
-                        prefix: "",
-                    },
-                ]);
+                let input = "";
+                try {
+                    const answers = await inquirer.prompt([
+                        {
+                            type: "input",
+                            name: "input",
+                            message: chalk.cyan("You →"),
+                            prefix: "",
+                        },
+                    ]);
+                    input = answers.input;
+                } catch (err) {
+                    if (err.name === "ExitPromptError" || err.message.includes("force closed")) {
+                        console.log(chalk.cyan("\n  👋 Goodbye! Happy coding!\n"));
+                        break;
+                    }
+                    console.error(chalk.red("\n  ⚠️ Chat ended due to error.\n"));
+                    break;
+                }
 
                 const trimmed = input.trim();
                 if (!trimmed) continue;

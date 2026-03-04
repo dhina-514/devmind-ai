@@ -213,22 +213,45 @@ function printScanSummary(files, critical, high, medium, low) {
 }
 
 function getFiles(dir, acc = []) {
+    // Fail-safe to avoid heap exhaustion if scanning the entire C: drive
+    if (acc.length >= 5000) return acc;
+
     if (fs.statSync(dir).isFile()) {
         acc.push(dir);
         return acc;
     }
 
-    const IGNORE = ["node_modules", ".git", "dist", "build", ".next", "__pycache__", "coverage"];
-    const entries = fs.readdirSync(dir);
+    const IGNORE = ["node_modules", ".git", "dist", "build", ".next", "__pycache__", "coverage", ".devmind"];
+    const MAX_FILE_SIZE = 500 * 1024; // 500 KB limit for scanning
+
+    let entries = [];
+    try {
+        entries = fs.readdirSync(dir);
+    } catch {
+        // Skip directories without permission
+        return acc;
+    }
 
     for (const entry of entries) {
         if (IGNORE.includes(entry)) continue;
+
         const full = path.join(dir, entry);
         try {
             const stat = fs.statSync(full);
-            if (stat.isDirectory()) getFiles(full, acc);
-            else if (EXTENSIONS.includes(path.extname(entry))) acc.push(full);
-        } catch { }
+
+            if (stat.isDirectory()) {
+                // Ignore all hidden directories
+                if (entry.startsWith(".")) continue;
+                getFiles(full, acc);
+            } else if (EXTENSIONS.includes(path.extname(entry)) || entry === ".env") {
+                // Only scan files under 500KB to prevent memory crashes
+                if (stat.size <= MAX_FILE_SIZE) {
+                    acc.push(full);
+                }
+            }
+        } catch {
+            // Ignore unreadable files
+        }
     }
     return acc;
 }
