@@ -1,6 +1,6 @@
 {
   "name": "devmind-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "🧠 AI-powered CLI assistant that generates project ideas, scaffolds structures, writes READMEs, suggests tech stacks, explains errors, and builds full starter projects — for any domain.",
   "main": "index.js",
   "type": "module",
@@ -42,8 +42,7 @@
     "node": ">=18.0.0"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/devmind-ai.git"
+    "url": "git+https://github.com/dhina-514/devmind-ai.git"
   },
-  "homepage": "https://github.com/yourusername/devmind-ai#readme"
+  "homepage": "https://github.com/dhina-514/devmind-ai#readme"
 }
