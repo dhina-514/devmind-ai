@@ -55,10 +55,10 @@ export function chatCommand(program) {
                 } catch (err) {
                     if (err.name === "ExitPromptError" || err.message.includes("force closed")) {
                         console.log(chalk.cyan("\n  👋 Goodbye! Happy coding!\n"));
-                        break;
+                        process.exit(0);
                     }
                     console.error(chalk.red("\n  ⚠️ Chat ended due to error.\n"));
-                    break;
+                    process.exit(1);
                 }
 
                 const trimmed = input.trim();
@@ -67,7 +67,7 @@ export function chatCommand(program) {
                     console.log(
                         chalk.cyan("\n  👋 Goodbye! Happy coding!\n")
                     );
-                    break;
+                    process.exit(0);
                 }
 
                 turn++;

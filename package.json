@@ -1,6 +1,6 @@
 {
   "name": "devmind-ai",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "🧠 AI-powered CLI assistant that generates project ideas, scaffolds structures, writes READMEs, suggests tech stacks, explains errors, and builds full starter projects — for any domain.",
   "main": "index.js",
   "type": "module",
